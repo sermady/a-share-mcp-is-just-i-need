@@ -13,7 +13,7 @@
 
 </div>
 
-本项目是一个基于 Model Context Protocol (MCP) 的服务器，旨在提供 A 股相关的查询工具。它提供股票基本信息、历史 K 线数据、财务指标、宏观经济数据等多种查询功能。
+本项目是一个基于专注于 A 股市场的 MCP 服务器，它提供股票基本信息、历史 K 线数据、财务指标、宏观经济数据等多种查询功能，理论上来说，可以回答有关 A 股市场的任何问题，无论是针对大盘还是特定股票。
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%">
@@ -146,7 +146,7 @@ uv sync
       "command": "uv", // 或者 uv.exe 的绝对路径, 例如: "C:\\path\\to\\uv.exe"
       "args": [
         "--directory",
-        "C:\\Users\\YourName\\Projects\\a_share_mcp", // 替换为你的项目根目录绝对路径
+        "C:\\Users\\YourName\\Projects\\a_share_mcp", // 替换为你的项目根目录绝对路径，不一定是C盘，按实际的填写
         "run",
         "python",
         "mcp_server.py"

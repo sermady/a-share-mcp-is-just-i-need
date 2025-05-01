@@ -7,8 +7,8 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Configuration
-MAX_MARKDOWN_ROWS = 50  # Max rows to display in Markdown output
-MAX_MARKDOWN_COLS = 10  # Max columns to display
+MAX_MARKDOWN_ROWS = 350  # Common number of trading days per year. Max rows to display in Markdown output
+MAX_MARKDOWN_COLS = 12  # Max columns to display
 
 
 def format_df_to_markdown(df: pd.DataFrame, max_rows: int = MAX_MARKDOWN_ROWS, max_cols: int = MAX_MARKDOWN_COLS) -> str:
