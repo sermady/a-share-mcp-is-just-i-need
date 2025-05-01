@@ -50,7 +50,7 @@ def call_financial_data_tool(
         logger.info(
             f"Successfully retrieved {data_type_name} data for {code}, {year}Q{quarter}.")
         # Use smaller limits for financial tables?
-        return format_df_to_markdown(df, max_rows=20, max_cols=10)
+        return format_df_to_markdown(df)
 
     except NoDataFoundError as e:
         logger.warning(f"NoDataFoundError for {code}, {year}Q{quarter}: {e}")

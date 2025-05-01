@@ -82,7 +82,7 @@ def register_stock_market_tools(app: FastMCP, active_data_source: FinancialDataS
             # Format the result
             logger.info(
                 f"Successfully retrieved K-data for {code}, formatting to Markdown.")
-            return format_df_to_markdown(df, start_date=start_date, end_date=end_date)
+            return format_df_to_markdown(df)
 
         except NoDataFoundError as e:
             logger.warning(f"NoDataFoundError for {code}: {e}")
@@ -129,7 +129,7 @@ def register_stock_market_tools(app: FastMCP, active_data_source: FinancialDataS
             logger.info(
                 f"Successfully retrieved basic info for {code}, formatting to Markdown.")
             # Smaller limits for basic info
-            return format_df_to_markdown(df, max_rows=10, max_cols=10)
+            return format_df_to_markdown(df)
 
         except NoDataFoundError as e:
             logger.warning(f"NoDataFoundError for {code}: {e}")
@@ -222,7 +222,7 @@ def register_stock_market_tools(app: FastMCP, active_data_source: FinancialDataS
                 code=code, start_date=start_date, end_date=end_date)
             logger.info(
                 f"Successfully retrieved adjustment factor data for {code}.")
-            return format_df_to_markdown(df, start_date=start_date, end_date=end_date)
+            return format_df_to_markdown(df)
 
         except NoDataFoundError as e:
             logger.warning(f"NoDataFoundError for {code}: {e}")
