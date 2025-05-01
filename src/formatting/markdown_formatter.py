@@ -41,12 +41,13 @@ def format_df_to_markdown(df: pd.DataFrame, max_rows: int = None, max_cols: int 
     truncation_notes = []
 
     if original_rows > max_rows:
-        df_display = pd.concat(
-            [df.head(max_rows // 2), df.tail(max_rows - max_rows // 2)])
+        # Simply take the first max_rows rows
+        df_display = df.head(max_rows)
         truncation_notes.append(
-            f"rows truncated to {max_rows} (from {original_rows})")
+            f"rows truncated to {max_rows} (displaying first {max_rows} rows out of {original_rows})")
         truncated = True
     else:
+        # No row truncation needed
         df_display = df
 
     if original_cols > max_cols:
