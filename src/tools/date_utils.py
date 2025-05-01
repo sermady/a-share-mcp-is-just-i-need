@@ -21,18 +21,18 @@ def register_date_utils_tools(app: FastMCP, active_data_source: FinancialDataSou
         active_data_source: The active financial data source
     """
 
-    @app.tool()
-    def get_current_date() -> str:
-        """
-        获取当前日期，可用于查询最新数据。
+    # @app.tool()
+    # def get_current_date() -> str:
+    #     """
+    #     获取当前日期，可用于查询最新数据。
 
-        Returns:
-            当前日期，格式为'YYYY-MM-DD'。
-        """
-        logger.info("Tool 'get_current_date' called")
-        current_date = datetime.now().strftime("%Y-%m-%d")
-        logger.info(f"Returning current date: {current_date}")
-        return current_date
+    #     Returns:
+    #         当前日期，格式为'YYYY-MM-DD'。
+    #     """
+    #     logger.info("Tool 'get_current_date' called")
+    #     current_date = datetime.now().strftime("%Y-%m-%d")
+    #     logger.info(f"Returning current date: {current_date}")
+    #     return current_date
 
     @app.tool()
     def get_latest_trading_date() -> str:

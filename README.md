@@ -269,7 +269,7 @@ uv sync
         </td>
         <td>
           <ul>
-            <li><code>get_current_date</code></li>
+            <!-- <li><code>get_current_date</code></li> -->
             <li><code>get_latest_trading_date</code></li>
             <li><code>get_stock_analysis</code></li>
           </ul>
