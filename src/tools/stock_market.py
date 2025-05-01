@@ -82,7 +82,7 @@ def register_stock_market_tools(app: FastMCP, active_data_source: FinancialDataS
             # Format the result
             logger.info(
                 f"Successfully retrieved K-data for {code}, formatting to Markdown.")
-            return format_df_to_markdown(df)
+            return format_df_to_markdown(df, start_date=start_date, end_date=end_date)
 
         except NoDataFoundError as e:
             logger.warning(f"NoDataFoundError for {code}: {e}")
