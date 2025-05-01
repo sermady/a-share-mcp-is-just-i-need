@@ -41,7 +41,7 @@ def register_market_overview_tools(app: FastMCP, active_data_source: FinancialDa
                 start_date=start_date, end_date=end_date)
             logger.info("Successfully retrieved trade dates.")
             # Trade dates table can be long, apply standard truncation
-            return format_df_to_markdown(df)
+            return format_df_to_markdown(df, start_date=start_date, end_date=end_date)
 
         except NoDataFoundError as e:
             logger.warning(f"NoDataFoundError: {e}")

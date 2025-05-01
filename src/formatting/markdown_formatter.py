@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 # Configuration
 # Common number of trading days per year. Max rows to display in Markdown output
 MAX_MARKDOWN_ROWS = 250
-MAX_MARKDOWN_COLS = 12  # Max columns to display
+MAX_MARKDOWN_COLS = 20  # Max columns to display
 
 
 def format_df_to_markdown(df: pd.DataFrame, max_rows: int = None, max_cols: int = MAX_MARKDOWN_COLS,
@@ -89,7 +89,13 @@ def _calculate_dynamic_max_rows(df: pd.DataFrame, start_date: str = None, end_da
     Returns:
         Appropriate max_rows value
     """
-    # If DataFrame has a 'date' column, try to use it for calculation
+    # 首先检查 DataFrame 的实际行数
+    actual_rows = len(df)
+
+    # 计算基于日期的估计行数
+    estimated_rows = MAX_MARKDOWN_ROWS  # 默认值
+
+    # 如果 DataFrame 有 'date' 列，尝试使用它计算
     if 'date' in df.columns and pd.api.types.is_datetime64_any_dtype(df['date']) or isinstance(df['date'].iloc[0], str):
         try:
             if isinstance(df['date'].iloc[0], str):
@@ -101,30 +107,29 @@ def _calculate_dynamic_max_rows(df: pd.DataFrame, start_date: str = None, end_da
             max_date = date_series.max()
             date_range = (max_date - min_date).days
 
-            # Estimate trading days (approximately 250 trading days per year)
-            estimated_trading_days = int(date_range * 250 / 365) + 1
+            # 估计交易日（大约每年 250 个交易日）
+            estimated_rows = int(date_range * 250 / 365) + 1
 
-            # Return at least 50 rows, at most MAX_MARKDOWN_ROWS, or estimated trading days
-            return max(50, min(MAX_MARKDOWN_ROWS, estimated_trading_days))
         except Exception as e:
             logger.warning(
                 f"Error calculating dynamic rows from DataFrame date column: {e}")
 
-    # If start_date and end_date are provided
+    # 如果提供了 start_date 和 end_date
     elif start_date and end_date:
         try:
             start = datetime.strptime(start_date, "%Y-%m-%d")
             end = datetime.strptime(end_date, "%Y-%m-%d")
             date_range = (end - start).days
 
-            # Estimate trading days (approximately 250 trading days per year)
-            estimated_trading_days = int(date_range * 250 / 365) + 1
+            # 估计交易日（大约每年 250 个交易日）
+            estimated_rows = int(date_range * 250 / 365) + 1
 
-            # Return at least 50 rows, at most MAX_MARKDOWN_ROWS, or estimated trading days
-            return max(50, min(MAX_MARKDOWN_ROWS, estimated_trading_days))
         except Exception as e:
             logger.warning(
                 f"Error calculating dynamic rows from start/end dates: {e}")
 
-    # Default to MAX_MARKDOWN_ROWS if date calculation fails
-    return MAX_MARKDOWN_ROWS
+    # 确保估计行数不超过最大行数
+    estimated_rows = min(estimated_rows, MAX_MARKDOWN_ROWS)
+
+    # 如果实际行数小于估计行数，直接返回实际行数；否则返回估计行数
+    return min(actual_rows, estimated_rows)
