@@ -1,4 +1,38 @@
 # Implementation of the FinancialDataSource interface using Baostock
+
+# Windows compatibility fix for baostock
+import sys
+import os
+if sys.platform.startswith('win'):
+    # Apply Windows DLL compatibility fixes
+    os.environ['PYTHONIOENCODING'] = 'utf-8'
+    os.environ['PYTHONUNBUFFERED'] = '1'
+    
+    # Add DLL search paths if available
+    if hasattr(os, 'add_dll_directory'):
+        try:
+            python_path = os.path.dirname(sys.executable)
+            possible_paths = [
+                python_path,
+                os.path.join(python_path, 'Library', 'bin'),
+                os.path.join(python_path, 'Scripts'),
+            ]
+            for path in possible_paths:
+                if os.path.exists(path):
+                    os.add_dll_directory(path)
+        except Exception:
+            pass  # Silently continue if DLL path setup fails
+    
+    # Update site-packages paths
+    try:
+        import site
+        site_packages = site.getsitepackages()
+        for pkg_path in site_packages:
+            if pkg_path not in sys.path:
+                sys.path.insert(0, pkg_path)
+    except Exception:
+        pass  # Silently continue if path update fails
+
 import baostock as bs
 import pandas as pd
 from typing import List, Optional
