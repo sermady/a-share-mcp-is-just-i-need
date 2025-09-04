@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Base utilities for MCP tools.
 Contains shared helper functions for calling data sources.

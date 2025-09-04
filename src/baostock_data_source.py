@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Implementation of the FinancialDataSource interface using Baostock
 
 # Windows compatibility fix for baostock

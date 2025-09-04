@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Main MCP server file
 import logging
 from datetime import datetime

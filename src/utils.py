@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Utility functions, including the Baostock login context manager and logging setup
 import baostock as bs
 import os

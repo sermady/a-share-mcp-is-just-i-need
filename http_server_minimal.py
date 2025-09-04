@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 精简版 HTTP 服务器，只保留核心 MCP 端点
 专为你的股票分析系统优化

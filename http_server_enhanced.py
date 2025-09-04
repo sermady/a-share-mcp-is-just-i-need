@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 增强的 HTTP 服务器，手动添加 MCP 协议支持的 /messages 端点
 """

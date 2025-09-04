@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 独立的 HTTP 服务器，用于将 A-Share MCP 服务部署为 web 服务
 在 localhost:8000 上运行
